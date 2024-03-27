@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html lang="zxx">
+<head><script>{% load static %}</script><script>{% load custom_tags %}</script><script>var jsonDataww = {{ json_data|safe }};</script>
+<meta charset="utf-8"/>
+<meta content="Ashion Template" name="description"/>
+<meta content="Ashion, unica, creative, html" name="keywords"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+<title id="title_1"></title>
+<!-- Google Font -->
+<link href="{% static 'https://fonts.googleapis.com/css2?family=Cookie&amp;display=swap' %}" rel="stylesheet"/>
+<link href="{% static 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&amp;display=swap' %}" rel="stylesheet"/>
+<!-- Css Styles -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/elegant-icons.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/slicknav.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Page Preloder -->
+
+<!-- Offcanvas Menu Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+<div class="offcanvas__close">+</div>
+<ul class="offcanvas__widget">
+<li><span class="icon_search search-switch"></span></li>
+
+
+
+</ul>
+<div class="offcanvas__logo">
+<a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 8 %}"/></a>
+</div>
+<div id="mobile-menu-wrap"></div>
+<div class="offcanvas__auth">
+    {% if user.is_authenticated %}
+  
+    <li class="list-inline-item"><a  href="{% url 'shop:logout' %}"><div>Logout</div></a></li>
+            {% else %}
+      <li class="list-inline-item"><a href="{% url 'shop:login' %}">Login/Register</a></li>
+     {% endif %}
+    
+</div>
+</div>
+<!-- Offcanvas Menu End -->
+<!-- Header Section Begin -->
+<header class="header">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xl-3 col-lg-2">
+<div class="header__logo">
+<a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 9 %}"/></a>
+</div>
+</div>
+<div class="col-xl-6 col-lg-7">
+<nav class="header__menu">
+<ul>
+
+<li class="lvl1 parent megamenu"><a href="{% url 'web:index' %}">Home <i class="anm anm-angle-down-l"></i></a>
+<li class="lvl1 parent megamenu"><a href="{% url 'web:shop' %}">Shop <i class="anm anm-angle-down-l"></i></a>
+<li class="lvl1 parent megamenu"><a href="{% url 'shop:purchesed_list' %}">Order List <i class="anm anm-angle-down-l"></i></a>
+<li class="lvl1 parent dropdown"><a href="{% url 'web:blog' %}">Blogs<i class="anm anm-angle-down-l"></i></a>
+<li class="lvl1 parent dropdown"><a href="{% url 'web:contact' %}">Contact <i class="anm anm-angle-down-l"></i></a>
+    
+</ul>
+</nav>
+</div>
+<div class="col-lg-3">
+<div class="header__right">
+<div class="header__right__auth">
+   
+    
+</div>
+<ul class="header__right__widget">
+<li><span class="icon_search search-switch"></span></li>
+
+<li><a href="{% url 'shop:cart_list' %}"><span class="icon_bag_alt"></span>
+
+</a></li>
+{% if user.is_authenticated %}
+  
+<li class="list-inline-item"><a  href="{% url 'shop:logout' %}"><div>Logout</div></a></li>
+        {% else %}
+  <li class="list-inline-item"><a href="{% url 'shop:login' %}">Login/Register</a></li>
+ {% endif %}
+</ul>
+</div>
+</div>
+</div>
+<div class="canvas__open">
+<i class="fa fa-bars"></i>
+</div>
+</div>
+</header>
+    <!-- Header Section End -->
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="breadcrumb__links">
+    <a href="{% url 'web:index' %}"><i class="fa fa-home"></i> Home</a>
+    <span>Blog</span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Blog Section Begin -->
+    <section class="blog spad">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6">
+    <div class="blog__item">
+    <div class="blog__item__pic large__item set-bg" data-setbg="{% get_image_url 38 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_1"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    <div class="blog__item">
+    <div class="blog__item__pic set-bg" data-setbg="{% get_image_url 39 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_2"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    <div class="blog__item">
+    <div class="blog__item__pic set-bg" data-setbg="{% get_image_url 40 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_3"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+    <div class="blog__item">
+    <div class="blog__item__pic set-bg" data-setbg="{% get_image_url 41 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_4"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    <div class="blog__item">
+    <div class="blog__item__pic set-bg" data-setbg="{% get_image_url 42 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_5"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    <div class="blog__item">
+    <div class="blog__item__pic set-bg" data-setbg="{% get_image_url 43 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_6"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    <div class="blog__item">
+    <div class="blog__item__pic set-bg" data-setbg="{% get_image_url 44 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_7"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+    <div class="blog__item">
+    <div class="blog__item__pic set-bg" data-setbg="{% get_image_url 45 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_8"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    <div class="blog__item">
+    <div class="blog__item__pic set-bg" data-setbg="{% get_image_url 46 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_9"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    <div class="blog__item">
+    <div class="blog__item__pic large__item set-bg" data-setbg="{% get_image_url 47 %}"></div>
+    <div class="blog__item__text">
+    <h6 id="h6_10"></h6>
+    <ul>
+    <li>by <span>Ema Timahe</span></li>
+    <li>Seb 17, 2019</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-12 text-center">
+    
+    </div>
+    </div>
+    </div>
+    </section>
+    <!-- Blog Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" data-setbg="{% get_image_url 26 %}">
+    <div class="instagram__text">
+    <i class="fa fa-instagram"></i>
+    <a href="#">@ ashion_shop</a>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" data-setbg="{% get_image_url 27 %}">
+    <div class="instagram__text">
+    <i class="fa fa-instagram"></i>
+    <a href="#">@ ashion_shop</a>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" data-setbg="{% get_image_url 28 %}">
+    <div class="instagram__text">
+    <i class="fa fa-instagram"></i>
+    <a href="#">@ ashion_shop</a>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" data-setbg="{% get_image_url 29 %}">
+    <div class="instagram__text">
+    <i class="fa fa-instagram"></i>
+    <a href="#">@ ashion_shop</a>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" data-setbg="{% get_image_url 30 %}">
+    <div class="instagram__text">
+    <i class="fa fa-instagram"></i>
+    <a href="#">@ ashion_shop</a>
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+    <div class="instagram__item set-bg" data-setbg="{% get_image_url 31 %}">
+    <div class="instagram__text">
+    <i class="fa fa-instagram"></i>
+    <a href="#">@ ashion_shop</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Instagram End -->
+
+    <!-- Footer Section Begin -->
+
+    		
+<footer class="footer">
+	<div class="container">
+	<div class="row">
+	<div class="col-lg-4 col-md-6 col-sm-7">
+	<div class="footer__about">
+	<div class="footer__logo">
+	<a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 20 %}"/></a>
+	</div>
+	<p id="p_14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt cilisis.</p>
+	<div class="footer__payment">
+	<!-- <a href="#"><img alt="" src="{% get_image_url 21 %}"/></a>
+	<a href="#"><img alt="" src="{% get_image_url 22 %}"/></a>
+	<a href="#"><img alt="" src="{% get_image_url 23 %}"/></a>
+	<a href="#"><img alt="" src="{% get_image_url 24 %}"/></a>
+	<a href="#"><img alt="" src="{% get_image_url 25 %}"/></a> -->
+	</div>
+	</div>
+	</div>
+	<div class="col-lg-2 col-md-3 col-sm-5">
+	<div class="footer__widget">
+	<h6 id="h6_22"></h6>
+	<ul>
+	<li><a href="#">About</a></li>
+	<li><a href="{% url 'web:blog' %}">Blogs</a></li>
+	<li><a href="{% url 'web:contact' %}">Contact</a></li>
+	<li><a href="#">FAQ</a></li>
+	</ul>
+	</div>
+	</div>
+	<div class="col-lg-2 col-md-3 col-sm-4">
+	<div class="footer__widget">
+	<h6 id="h6_23"></h6>
+	<ul>
+	
+	<li><a href="{% url 'shop:purchesed_list' %}">Orders Tracking</a></li>
+	<li><a href="{% url 'shop:cart_list' %}">Cart</a></li>
+	{% if user.is_authenticated %}
+	  
+		<li class="list-inline-item"><a  href="{% url 'shop:logout' %}"><div>Logout</div></a></li>
+				{% else %}
+		  <li class="list-inline-item"><a href="{% url 'shop:login' %}">Login/Register</a></li>
+		 {% endif %}
+	</ul>
+	</div>
+	</div>
+	<div class="col-lg-4 col-md-8 col-sm-8">
+	<div class="footer__newslatter">
+	<h6 id="h6_24"></h6>
+	<form method="post" action="{% url 'web:collect_email' %}">
+		{% csrf_token %}
+	<input placeholder="Email" name="email"  type="text"/>
+	<button class="site-btn" name="commit"  type="submit">Subscribe</button>
+	</form>
+	<div class="footer__social">
+		{% for socilamedia in social %}
+		{% if socilamedia.social_media.name == "Facebook" %}
+		<a href="{{socilamedia.link}}"><i class="fab fa-facebook"></i></a>
+		{% elif socilamedia.social_media.name == "Instagram" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-instagram"></i></a>
+		{% elif socilamedia.social_media.name == "Twitter" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-twitter"></i></a>
+		{% elif socilamedia.social_media.name == "LinkedIn" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-linkedin"></i></a>
+		{% elif socilamedia.social_media.name == "Snapchat" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-snapchat"></i></a>
+		{% elif socilamedia.social_media.name == "Pinterest" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-pinterest"></i></a>
+		{% elif socilamedia.social_media.name == "Reddit" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-reddit"></i></a>
+		{% elif socilamedia.social_media.name == "TikTok" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-tiktok"></i></a>
+		{% elif socilamedia.social_media.name == "YouTube" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-youtube"></i></a>
+		{% elif socilamedia.social_media.name == "WhatsApp" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-whatsapp"></i></a>
+		{% elif socilamedia.social_media.name == "WeChat" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-weixin"></i></a>
+		{% elif socilamedia.social_media.name == "Tumblr" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-tumblr"></i></a>
+		{% elif socilamedia.social_media.name == "Twitch" %}
+		<a href="{{socilamedia.link}}"><i class="fab fa-twitch"></i></a>
+		{% elif socilamedia.social_media.name == "Telegram" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-telegram"></i></a>
+		{% elif socilamedia.social_media.name == "Discord" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-discord"></i></a>
+		{% elif socilamedia.social_media.name == "Clubhouse" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-houzz"></i></a>
+		{% elif socilamedia.social_media.name == "Viber" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-viber"></i></a>
+		{% elif socilamedia.social_media.name == "LINE" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-line"></i></a>
+		{% elif socilamedia.social_media.name == "QQ" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-qq"></i></a>
+		{% elif socilamedia.social_media.name == "Sina Weibo" %}
+		<a href="{{socilamedia.link}}"> <i class="fab fa-weibo"></i></a>
+		{% endif %}
+	{% endfor %}
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-lg-12">
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	<div class="footer__copyright__text">
+		<p > Copyright © 2024 All rights reserved | This template is made with by <a href="http://zufan.et">zufan.et</a></p>
+	</div>
+	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+	</div>
+	</div>
+	</div>
+	</footer>
+	<!-- Footer Section End -->
+	<!-- Search Begin -->
+	<div class="search-model">
+	<div class="h-100 d-flex align-items-center justify-content-center">
+	<div class="search-close-switch">+</div>
+	<form class="search-model-form" role="search" action="{% url 'web:search' %}">
+	<input id="search-input"  name="search" placeholder="Search here....." type="text"/>
+	</form>
+	</div>
+	</div>
+	<!-- Search End -->
+	<!-- Js Plugins -->
+	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'js/mixitup.min.js' %}"></script>
+	<script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+	<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'webfunction.js' %}"></script><script>
+		document.addEventListener('DOMContentLoaded', function () {
+			// Iterate over each key in the JSON data
+			for (var key in jsonDataww) {
+				if (jsonDataww.hasOwnProperty(key)) {
+					var element = document.getElementById(key);
+					if (element) {
+						if(key.startsWith("a")){
+							element.href = jsonDataww[key['link']];
+						}else{
+							element.textContent = jsonDataww[key];
+						}
+					}
+				}
+			}
+		});
+		</script></body>
+	</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html lang="zxx">
+<head><script>{% load static %}</script><script>{% load custom_tags %}</script><script>var jsonDataww = {{ json_data|safe }};</script>
+<meta charset="utf-8"/>
+<meta content="Ashion Template" name="description"/>
+<meta content="Ashion, unica, creative, html" name="keywords"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+<title id="title_1"></title>
+<!-- Google Font -->
+<link href="{% static 'https://fonts.googleapis.com/css2?family=Cookie&amp;display=swap' %}" rel="stylesheet"/>
+<link href="{% static 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&amp;display=swap' %}" rel="stylesheet"/>
+<!-- Css Styles -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/elegant-icons.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/slicknav.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- Page Preloder -->
+
+<!-- Offcanvas Menu Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+<div class="offcanvas__close">+</div>
+<ul class="offcanvas__widget">
+<li><span class="icon_search search-switch"></span></li>
+
+
+
+</ul>
+<div class="offcanvas__logo">
+<a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 8 %}"/></a>
+</div>
+<div id="mobile-menu-wrap"></div>
+<div class="offcanvas__auth">
+    {% if user.is_authenticated %}
+  
+    <li class="list-inline-item"><a  href="{% url 'shop:logout' %}"><div>Logout</div></a></li>
+            {% else %}
+      <li class="list-inline-item"><a href="{% url 'shop:login' %}">Login/Register</a></li>
+     {% endif %}
+    
+</div>
+</div>
+<!-- Offcanvas Menu End -->
+<!-- Header Section Begin -->
+<header class="header">
+<div class="container-fluid">
+<div class="row">
+<div class="col-xl-3 col-lg-2">
+<div class="header__logo">
+<a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 9 %}"/></a>
+</div>
+</div>
+<div class="col-xl-6 col-lg-7">
+<nav class="header__menu">
+<ul>
+
+<li class="lvl1 parent megamenu"><a href="{% url 'web:index' %}">Home <i class="anm anm-angle-down-l"></i></a>
+<li class="lvl1 parent megamenu"><a href="{% url 'web:shop' %}">Shop <i class="anm anm-angle-down-l"></i></a>
+<li class="lvl1 parent megamenu"><a href="{% url 'shop:purchesed_list' %}">Order List <i class="anm anm-angle-down-l"></i></a>
+<li class="lvl1 parent dropdown"><a href="{% url 'web:blog' %}">Blogs<i class="anm anm-angle-down-l"></i></a>
+<li class="lvl1 parent dropdown"><a href="{% url 'web:contact' %}">Contact <i class="anm anm-angle-down-l"></i></a>
+    
+</ul>
+</nav>
+</div>
+<div class="col-lg-3">
+<div class="header__right">
+<div class="header__right__auth">
+   
+    
+</div>
+<ul class="header__right__widget">
+<li><span class="icon_search search-switch"></span></li>
+
+<li><a href="{% url 'shop:cart_list' %}"><span class="icon_bag_alt"></span>
+
+</a></li>
+{% if user.is_authenticated %}
+  
+<li class="list-inline-item"><a  href="{% url 'shop:logout' %}"><div>Logout</div></a></li>
+        {% else %}
+  <li class="list-inline-item"><a href="{% url 'shop:login' %}">Login/Register</a></li>
+ {% endif %}
+</ul>
+</div>
+</div>
+</div>
+<div class="canvas__open">
+<i class="fa fa-bars"></i>
+</div>
+</div>
+</header>
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="{% url 'web:index' %}"><i class="fa fa-home"></i> Home</a>
+                        <span>Shopping cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Shop Cart Section Begin -->
+    <section class="shop-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in order %}
+                                <tr>
+                                    <td class="cart__product__item">
+                                        <img src="{{i.0.item.images.all.0.image.url}}" alt="">
+                                        <div class="cart__product__item__title">
+                                            <h6>{{i.0.item.name}}</h6>
+                                            <div class="rating">
+
+                                                
+                                               
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price">
+                                        {% if i.0.item.disc > 0 %}
+                                        {% with discounted_price=i.0.item.price|calculate_discounted_price:i.0.item.disc|floatformat:2 %}
+                                        <ins>{{ discounted_price }} birr</ins><br><del>{{i.0.item.price}} </del>
+                                        {% endwith %}
+                                    {% else %}
+                                        <span class="amount">{{i.0.item.price}} birr</span>
+                                    {% endif %}
+                                </td>
+                             
+                                <td class="cart__quantity">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="">
+                                            <input type="text" name="id" value="{{i.0.id}}" hidden>
+                                            <input type="number" value="{{i.0.quntity}}" name="qunt" size="10px">
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="site-btn">Change</button>
+                                    </form>
+                                </td>
+                                
+                                    <td class="cart__total">
+
+                                        {% if i.0.item.disc > 0 %}
+
+                                        {% with discounted_price=i.1|calculate_discounted_price:i.0.item.disc|floatformat:2 %}
+                                                <ins>{{ discounted_price }} birr</ins> <br><del>{{i.1}} </del>
+                                            {% endwith %}
+                                        {% else %}
+                                            <span>{{i.1}} birr</span>
+                                        {% endif %}
+                                     </td>
+                                    <!-- <td class="cart__close"><span class="icon_close"></span></td> -->
+                                    <td class="cart__close">
+                                        <a href="{% url 'shop:remove' id=i.0.id %}"><span class="icon_close"></span></a>
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn">
+                        <a href="{% url 'web:shop' %}">Continue Shopping</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn update__btn">
+                        <a href="{% url 'shop:payment_display' ord.id %}">Proceed to checkout</a> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <tr class="cart_item">
+                            <td colspan="6">
+                                <div class="row justify-content-between align-items-center py-2 col-mb-30">
+                                    <div class="col-lg-auto ps-lg-0">
+                                        <form action="{% url 'shop:discount' %}" method="post">
+
+                                        <div class="row align-items-center">
+                                            <div class="col-md-8">
+                                                {% csrf_token %} 
+
+                                                <input type="text" name="code" class="form-control text-center text-md-start" placeholder="Enter Coupon Code..">
+                                            
+                                            </div>
+                                            <div class="col-md-4 mt-3 mt-md-0">
+                                                <button type="submit" class="site-btn">Apply Coupon</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </tr>
+                            </div>
+                <div class="col-lg-4 offset-lg-2">
+                    <div class="cart__total__procced">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li>Subtotal <span>{{total}} birr</span></li>
+                            <li>Coupon Discount <span>-{{discunt}} birr</span></li>
+                            <li>Total <span>{{subtot}} birr</span></li>
+                        </ul>
+                        <a href="{% url 'shop:payment_display' ord.id %}" class="primary-btn">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Cart Section End -->
+
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="{% get_image_url 26 %}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="{% get_image_url 27 %}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="{% get_image_url 28 %}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="{% get_image_url 29 %}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="{% get_image_url 30 %}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="{% get_image_url 31 %}">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+    <!-- Footer Section Begin -->
+   
+<footer class="footer">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-7">
+    <div class="footer__about">
+    <div class="footer__logo">
+    <a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 20 %}"/></a>
+    </div>
+    <p id="p_14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt cilisis.</p>
+    <div class="footer__payment">
+    <!-- <a href="#"><img alt="" src="{% get_image_url 21 %}"/></a>
+    <a href="#"><img alt="" src="{% get_image_url 22 %}"/></a>
+    <a href="#"><img alt="" src="{% get_image_url 23 %}"/></a>
+    <a href="#"><img alt="" src="{% get_image_url 24 %}"/></a>
+    <a href="#"><img alt="" src="{% get_image_url 25 %}"/></a> -->
+    </div>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-5">
+    <div class="footer__widget">
+    <h6 id="h6_22"></h6>
+    <ul>
+    <li><a href="#">About</a></li>
+    <li><a href="{% url 'web:blog' %}">Blogs</a></li>
+    <li><a href="{% url 'web:contact' %}">Contact</a></li>
+    <li><a href="#">FAQ</a></li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-4">
+    <div class="footer__widget">
+    <h6 id="h6_23"></h6>
+    <ul>
+    
+    <li><a href="{% url 'shop:purchesed_list' %}">Orders Tracking</a></li>
+    <li><a href="{% url 'shop:cart_list' %}">Cart</a></li>
+    {% if user.is_authenticated %}
+      
+        <li class="list-inline-item"><a  href="{% url 'shop:logout' %}"><div>Logout</div></a></li>
+                {% else %}
+          <li class="list-inline-item"><a href="{% url 'shop:login' %}">Login/Register</a></li>
+         {% endif %}
+    </ul>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-8 col-sm-8">
+    <div class="footer__newslatter">
+    <h6 id="h6_24"></h6>
+    <form method="post" action="{% url 'web:collect_email' %}">
+        {% csrf_token %}
+    <input placeholder="Email" name="email"  type="text"/>
+    <button class="site-btn" name="commit"  type="submit">Subscribe</button>
+    </form>
+    <div class="footer__social">
+        {% for socilamedia in social %}
+        {% if socilamedia.social_media.name == "Facebook" %}
+        <a href="{{socilamedia.link}}"><i class="fab fa-facebook"></i></a>
+        {% elif socilamedia.social_media.name == "Instagram" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-instagram"></i></a>
+        {% elif socilamedia.social_media.name == "Twitter" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-twitter"></i></a>
+        {% elif socilamedia.social_media.name == "LinkedIn" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-linkedin"></i></a>
+        {% elif socilamedia.social_media.name == "Snapchat" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-snapchat"></i></a>
+        {% elif socilamedia.social_media.name == "Pinterest" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-pinterest"></i></a>
+        {% elif socilamedia.social_media.name == "Reddit" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-reddit"></i></a>
+        {% elif socilamedia.social_media.name == "TikTok" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-tiktok"></i></a>
+        {% elif socilamedia.social_media.name == "YouTube" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-youtube"></i></a>
+        {% elif socilamedia.social_media.name == "WhatsApp" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-whatsapp"></i></a>
+        {% elif socilamedia.social_media.name == "WeChat" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-weixin"></i></a>
+        {% elif socilamedia.social_media.name == "Tumblr" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-tumblr"></i></a>
+        {% elif socilamedia.social_media.name == "Twitch" %}
+        <a href="{{socilamedia.link}}"><i class="fab fa-twitch"></i></a>
+        {% elif socilamedia.social_media.name == "Telegram" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-telegram"></i></a>
+        {% elif socilamedia.social_media.name == "Discord" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-discord"></i></a>
+        {% elif socilamedia.social_media.name == "Clubhouse" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-houzz"></i></a>
+        {% elif socilamedia.social_media.name == "Viber" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-viber"></i></a>
+        {% elif socilamedia.social_media.name == "LINE" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-line"></i></a>
+        {% elif socilamedia.social_media.name == "QQ" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-qq"></i></a>
+        {% elif socilamedia.social_media.name == "Sina Weibo" %}
+        <a href="{{socilamedia.link}}"> <i class="fab fa-weibo"></i></a>
+        {% endif %}
+    {% endfor %}
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-12">
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    <div class="footer__copyright__text">
+        <p > Copyright © 2024 All rights reserved | This template is made with by <a href="http://zufan.et">zufan.et</a></p>
+    </div>
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    </div>
+    </div>
+    </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="search-close-switch">+</div>
+    <form class="search-model-form" role="search" action="{% url 'web:search' %}">
+    <input id="search-input"  name="search" placeholder="Search here....." type="text"/>
+    </form>
+    </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'webfunction.js' %}"></script><script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Iterate over each key in the JSON data
+            for (var key in jsonDataww) {
+                if (jsonDataww.hasOwnProperty(key)) {
+                    var element = document.getElementById(key);
+                    if (element) {
+                        if(key.startsWith("a")){
+                            element.href = jsonDataww[key['link']];
+                        }else{
+                            element.textContent = jsonDataww[key];
+                        }
+                    }
+                }
+            }
+        });
+        </script></body>
+    </html>
