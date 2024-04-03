@@ -30,12 +30,13 @@
 <div class="offcanvas__close">+</div>
 <ul class="offcanvas__widget">
 <li><span class="icon_search search-switch"></span></li>
+<li><a href="{% url 'shop:cart_list' %}"><span class="icon_bag_alt"></span>
 
 
 
 </ul>
 <div class="offcanvas__logo">
-<a href="./index.html"><img alt="" src="{% get_image_url 8 %}"/></a>
+<a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 8 %}"/></a>
 </div>
 <div id="mobile-menu-wrap"></div>
 <div class="offcanvas__auth">
@@ -55,7 +56,7 @@
 <div class="row">
 <div class="col-xl-3 col-lg-2">
 <div class="header__logo">
-<a href="./index.html"><img alt="" src="{% get_image_url 9 %}"/></a>
+<a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 9 %}"/></a>
 </div>
 </div>
 <div class="col-xl-6 col-lg-7">
@@ -95,6 +96,7 @@
 </div>
 <div class="canvas__open">
 <i class="fa fa-bars"></i>
+
 </div>
 </div>
 </header>
@@ -359,7 +361,7 @@
     <div class="col-lg-4 col-md-6 col-sm-7">
     <div class="footer__about">
     <div class="footer__logo">
-    <a href="./index.html"><img alt="" src="{% get_image_url 20 %}"/></a>
+    <a href="{% url 'web:index' %}"><img alt="" src="{% get_image_url 20 %}"/></a>
     </div>
     <p id="p_14">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt cilisis.</p>
     <div class="footer__payment">
